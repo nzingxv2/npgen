@@ -18,6 +18,15 @@
  * that are used throughout the application.
  */
 
+
+ /* 
+ * =============================================
+ * VARIABLES & GLOBAL SETTINGS
+ * =============================================
+ * This section defines the CSS variables for color schemes and global styles
+ * that are used throughout the application.
+ */
+
 :root {
     /* Primary color palette */
     --primary: #3498db;

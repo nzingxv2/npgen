@@ -1,20 +1,3 @@
-/*!
- * @file        index.js
- * @project     npgem
- * @author      nzingxv2 <nzingxv2@gmail.com>
- * @copyright   Copyright (c) 2025 nzingxv2
- * @license     MIT License
- *
- * @description 
- * Main JavaScript file for Your npgen.
- * Handles interactive behaviors, event listeners, and dynamic updates.
- *
- * @version     1.0.0
- * @created     2025-07-10
- * @last-updated 2025-07-10
- */
-
-
 document.addEventListener('DOMContentLoaded', function() {
     /**
      * DOM Elements
@@ -31,11 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     /** @type {string} Current selected section */
     let currentSection = 'OD';
-    let currentNumber = '24'; // Default sesuai tombol active
+    
+    /** @type {string} Current selected number */
+    let currentNumber = '24';
 
-    // Initialize
-    updateResult();
-    codeInput.focus();
+    // Initialize UI
+    if (codeInput && resultCode) {
+        updateResult();
+        codeInput.focus();
+    }
 
     /**
      * Handles section button click events
@@ -44,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             sectionButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            currentSection = button.dataset.section;
+            currentSection = button.dataset.section || 'OD';
             updateResult();
-            codeInput.focus();
+            codeInput?.focus();
         });
     });
 
@@ -57,23 +44,28 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             numberButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            currentNumber = button.dataset.number;
+            currentNumber = button.dataset.number || '24';
             updateResult();
-            codeInput.focus();
+            codeInput?.focus();
         });
     });
 
-    codeInput.addEventListener('input', function() {
-        // Sanitize input - only allow numbers
-        this.value = this.value.replace(/[^0-9]/g, '');
+    // Input validation and handling
+    if (codeInput) {
+        /**
+         * Handles code input events
+         */
+        codeInput.addEventListener('input', function() {
+            // Allow only digits
+            this.value = this.value.replace(/[^0-9]/g, '');
 
-        // Auto-truncate to 7 digits
-        if (this.value.length > 7) {
-            this.value = this.value.slice(0, 7);
-            triggerErrorShake(this);
-        }
+            // Limit to 7 characters
+            if (this.value.length > 7) {
+                this.value = this.value.slice(0, 7);
+                triggerErrorShake(this);
+            }
 
-        updateResult();
+            updateResult();
 
             // Auto-copy when 7 digits entered
             if (this.value.length === 7) {
@@ -88,14 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
         copyBtn.addEventListener('click', function() {
             copyToClipboard();
             resetInput();
-        }
-    });
-
-    // Copy button
-    copyBtn.addEventListener('click', function() {
-        copyToClipboard();
-        resetInput();
-    });
+        });
+    }
 
     /**
      * Global keyboard shortcuts handler
@@ -119,31 +105,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Section selection shortcuts (F1-F4)
         if (['F1', 'F2', 'F3', 'F4'].includes(e.key)) {
             e.preventDefault();
-            document.querySelector('[data-section="OD"]').click();
-        } else if (e.key === 'F2') {
-            e.preventDefault();
-            document.querySelector('[data-section="SP"]').click();
-        } else if (e.key === 'F3') {
-            e.preventDefault();
-            document.querySelector('[data-section="BN"]').click();
-        } else if (e.key === 'F4') {
-            e.preventDefault();
-            document.querySelector('[data-section="TP"]').click();
+            const sectionMap = { F1: 'OD', F2: 'SP', F3: 'BN', F4: 'TP' };
+            const btn = document.querySelector(`[data-section="${sectionMap[e.key]}"]`);
+            btn?.click();
         }
 
         // Number selection shortcuts (F5-F8)
         if (['F5', 'F6', 'F7', 'F8'].includes(e.key)) {
             e.preventDefault();
-            document.querySelector('[data-number="23"]').click();
-        } else if (e.key === 'F6') {
-            e.preventDefault();
-            document.querySelector('[data-number="24"]').click();
-        } else if (e.key === 'F7') {
-            e.preventDefault();
-            document.querySelector('[data-number="25"]').click();
-        } else if (e.key === 'F8') {
-            e.preventDefault();
-            document.querySelector('[data-number="26"]').click();
+            const numberMap = { F5: '23', F6: '24', F7: '25', F8: '26' };
+            const btn = document.querySelector(`[data-number="${numberMap[e.key]}"]`);
+            btn?.click();
         }
     });
 
@@ -168,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     document.addEventListener('click', function(e) {
         if (e.target.closest('.card') && e.target !== codeInput) {
-            codeInput.focus();
+            codeInput?.focus();
         }
     });
 
@@ -180,7 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
      * Updates result code display
      */
     function updateResult() {
-        let codeValue = codeInput.value.padStart(7, '0');
+        if (!resultCode) return;
+        let codeValue = codeInput?.value.padStart(7, '0') || '0000000';
         resultCode.textContent = `${currentSection}-${currentNumber}-F${codeValue}`;
     }
 
@@ -188,19 +161,19 @@ document.addEventListener('DOMContentLoaded', function() {
      * Copies result code to clipboard
      */
     function copyToClipboard() {
+        if (!resultCode) return;
         const text = resultCode.textContent;
 
         navigator.clipboard.writeText(text).then(() => {
-            // Visual feedback
-            resultBox.classList.add('copied');
-            copyStatus.classList.add('visible');
+            resultBox?.classList.add('copied');
+            copyStatus?.classList.add('visible');
 
             setTimeout(() => {
-                resultBox.classList.remove('copied');
-                copyStatus.classList.remove('visible');
+                resultBox?.classList.remove('copied');
+                copyStatus?.classList.remove('visible');
             }, 2000);
         }).catch(err => {
-            console.error('Failed to copy: ', err);
+            console.error('Failed to copy:', err);
         });
     }
 
@@ -208,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * Resets input field and refocuses
      */
     function resetInput() {
+        if (!codeInput) return;
         codeInput.value = '';
         updateResult();
         setTimeout(() => codeInput.focus(), 10);
@@ -219,8 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function triggerErrorShake(element) {
         element.classList.add('error-shake');
-        setTimeout(() => {
-            element.classList.remove('error-shake');
-        }, 500);
+        setTimeout(() => element.classList.remove('error-shake'), 500);
     }
 });
