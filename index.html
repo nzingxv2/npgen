@@ -1,112 +1,152 @@
 <!DOCTYPE html>
 <html lang="id">
-	<head>
-		<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<meta name="description" content="Generator Kode Unik dengan UX Tingkat Dewa">
-					<link rel="icon" type="image/x-icon" href="/images/favicon.svg">
-						<title>Simple Agreement Number Generator</title>
-						<link rel="stylesheet" href="index.css">
-							<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-							</head>
-							<body>
-								<div class="container">
-									<div class="card">
-										<header>
-											<h1> Generate Agreement Number </h1>
-											<p class="subtitle">God-Level UX - 1 Code Per Second</p>
-											<button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌓</button>
-										</header>
-										<div class="input-group">
-											<label class="input-label">Section</label>
-											<div class="section-buttons">
-												<button class="section-btn active" data-section="OD">OD</button>
-												<button class="section-btn" data-section="SP">SP</button>
-												<button class="section-btn" data-section="BN">BN</button>
-												<button class="section-btn" data-section="TP">TP</button>
-											</div>
-											<div class="input-group">
-												<label class="input-label">Numbers</label>
-												<div class="number-buttons">
-													<button class="number-btn" data-number="23">23</button>
-													<button class="number-btn active" data-number="24">24</button>
-													<button class="number-btn" data-number="25">25</button>
-													<button class="number-btn" data-number="26">26</button>
-												</div>
-											</div>
-											<div class="code-input-wrapper">
-												<label class="input-label">Code</label>
-												<input
-                        type="text"
-                        class="code-input"
-                        id="codeInput"
-                        placeholder="0000000"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generator Kode Unik dengan UX Tingkat Dewa">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzingxv2/npgen@main/images/favicon.svg" type="image/x-icon">
+    <title>Agreement Number Generator - God-Level UX</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet dari repo GitHub -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzingxv2/npgen@main/src/css/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="card">
+            <!-- HEADER APLIKASI -->
+            <header>
+                <h1>Agreement Number Generator</h1>
+                <p class="subtitle">God-Level UX Experience • Instant Generation • 1 Code Per Second</p>
+                
+                <!-- TOMBOL TOGGLE TEMA -->
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </header>
+            
+            <!-- KONTROL INPUT SECTION -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-layer-group"></i>
+                    Section
+                </label>
+                <div class="section-buttons">
+                    <button class="section-btn active pulse" data-section="OD">OD</button>
+                    <button class="section-btn" data-section="SP">SP</button>
+                    <button class="section-btn" data-section="BN">BN</button>
+                    <button class="section-btn" data-section="TP">TP</button>
+                </div>
+            </div>
+            
+            <!-- KONTROL INPUT NUMBER -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-hashtag"></i>
+                    Numbers
+                </label>
+                <div class="number-buttons">
+                    <button class="number-btn" data-number="23">23</button>
+                    <button class="number-btn active" data-number="24">24</button>
+                    <button class="number-btn" data-number="25">25</button>
+                    <button class="number-btn" data-number="26">26</button>
+                </div>
+            </div>
+            
+            <!-- INPUT KODE UTAMA -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-key"></i>
+                    Code
+                </label>
+                <div class="code-input-wrapper">
+                    <input 
+                        type="text" 
+                        class="code-input" 
+                        id="codeInput" 
+                        placeholder="Enter 7 digits..."
                         autocomplete="off"
                         maxlength="7"
                         inputmode="numeric"
                         autofocus
+                        aria-label="Input kode 7 digit"
                     >
-												</div>
-											</div>
-											<div class="result-container">
-												<div class="result-label">
-													<span class="result-title">Unique Code Results</span>
-													<span class="copy-status" id="copyStatus">Copied successfully!</span>
-												</div>
-												<div class="result-box" id="resultBox">
-													<div class="result-code" id="resultCode">OD-24-F0000000</div>
-													<button class="copy-btn" id="copyBtn">COPY</button>
-												</div>
-											</div>
-											<div class="instructions">
-												<h3>fast Guide</h3>
-												<p>Type 7 digit code → Press
-													<strong>Enter</strong>For Generate Code Automaticly
-												</p>
-												<div class="shortcuts">
-													<div class="shortcut">
-														<div class="shortcut-key">F1-F4</div>
-														<div>Change Section</div>
-													</div>
-													<div class="shortcut">
-														<div class="shortcut-key">F5-F8</div>
-														<div>Change Angka</div>
-													</div>
-													<div class="shortcut">
-														<div class="shortcut-key">Enter / F9</div>
-														<div>Copy & Reset</div>
-													</div>
-													<div class="shortcut">
-														<div class="shortcut-key">Esc</div>
-														<div>Clear Input</div>
-													</div>
-													<div class="shortcut">
-														<div class="shortcut-key">Tab</div>
-														<div>Fast Navigation</div>
-													</div>
-												</div>
-											</div>
-											<div class="footer">
-												<p>Made with ❤️ by
-
-													<a href="https://about-riduwan.netlify.app/" title="Author">
-														<i class="fas fa-user"></i> Muhammad Riduwan Khafidi
-
-													</a> |
-
-													<a href="https://github.com/nzingxv2/npgen/blob/main/LICENSE" title="MIT License">
-														<i class="fas fa-file-contract"></i> MIT License
-
-													</a> |
-
-													<a href="https://github.com/nzingxv2/npgen" target="_blank" title="GitHub">
-														<i class="fab fa-github"></i> GitHub
-
-													</a>
-												</p>
-											</div>
-										</div>
-									</div>
-									<script src="index.js"></script>
-								</body>
-							</html>
+                </div>
+            </div>
+            
+            <!-- AREA HASIL GENERATOR -->
+            <div class="result-container">
+                <div class="result-label">
+                    <span class="result-title">
+                        <i class="fas fa-bolt"></i>
+                        Generated Agreement Number
+                    </span>
+                    <span class="copy-status" id="copyStatus" aria-live="polite">
+                        <i class="fas fa-check-circle"></i>
+                        Copied to clipboard!
+                    </span>
+                </div>
+                <div class="result-box" id="resultBox">
+                    <div class="result-code" id="resultCode" aria-live="polite">OD-24-F0000000</div>
+                    <button class="copy-btn" id="copyBtn" aria-label="Salin kode">
+                        <i class="fas fa-copy"></i>
+                        COPY
+                    </button>
+                </div>
+            </div>
+            
+            <!-- INSTRUKSI SHORTCUT KEYBOARD -->
+            <div class="instructions">
+                <h3>
+                    <i class="fas fa-rocket"></i>
+                    Productivity Shortcuts
+                </h3>
+                <p>Type 7 digit code → Press <strong>Enter</strong> to generate and copy automatically</p>
+                
+                <div class="shortcuts">
+                    <div class="shortcut">
+                        <span class="shortcut-key">F1-F4</span>
+                        <div class="shortcut-desc">Change Section</div>
+                    </div>
+                    <div class="shortcut">
+                        <span class="shortcut-key">F5-F8</span>
+                        <div class="shortcut-desc">Change Number</div>
+                    </div>
+                    <div class="shortcut">
+                        <span class="shortcut-key">Enter/F9</span>
+                        <div class="shortcut-desc">Copy & Reset</div>
+                    </div>
+                    <div class="shortcut">
+                        <span class="shortcut-key">Esc</span>
+                        <div class="shortcut-desc">Clear Input</div>
+                    </div>
+                    <div class="shortcut">
+                        <span class="shortcut-key">Tab</span>
+                        <div class="shortcut-desc">Fast Navigation</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOOTER APLIKASI -->
+            <div class="footer">
+                <p>
+                    Made with ❤️ by 
+                    <a href="https://about-riduwan.netlify.app/" title="Author" target="_blank">
+                        <i class="fas fa-user"></i> Muhammad Riduwan Khafidi
+                    </a> | 
+                    <a href="https://github.com/nzingxv2/npgen/blob/main/LICENSE" title="MIT License" target="_blank">
+                        <i class="fas fa-file-contract"></i> MIT License
+                    </a> | 
+                    <a href="https://github.com/nzingxv2/npgen" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+	<script src="https://cdn.jsdelivr.net/gh/nzingxv2/npgen@main/src/js/index.js"></script>
+</body>
+</html>

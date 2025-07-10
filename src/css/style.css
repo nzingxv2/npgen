@@ -1,0 +1,648 @@
+/*!
+ * @file        styles.css
+ * @project     npgen
+ * @author      nzingxv2 <nzingxv2@gmail.com>
+ * @copyright   Copyright (c) 2025 nzingxv2
+ * @license     MIT License
+ * 
+ * @description 
+ * Main stylesheet for npgen.
+ */
+
+
+/* 
+ * =============================================
+ * VARIABLES & GLOBAL SETTINGS
+ * =============================================
+ * This section defines the CSS variables for color schemes and global styles
+ * that are used throughout the application.
+ */
+
+:root {
+    /* Primary color palette */
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --primary-light: rgba(52, 152, 219, 0.15);
+    
+    /* Secondary and utility colors */
+    --secondary: #2c3e50;
+    --success: #27ae60;
+    --success-light: rgba(39, 174, 96, 0.15);
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    
+    /* Background gradients */
+    --bg-start: #f5f7fa;
+    --bg-end: #e4edf5;
+    
+    /* Card and text colors */
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --text-lighter: #b0b6ba;
+    
+    /* Visual effects */
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --radius: 14px;
+    --glow: 0 0 20px rgba(52, 152, 219, 0.3);
+    --pulse: 0 0 0 0 rgba(52, 152, 219, 0.7);
+}
+
+/* 
+ * DARK MODE VARIABLES
+ * ===================
+ * These variables override the default color scheme when dark mode is activated.
+ */
+.dark-mode {
+    --primary: #1abc9c;
+    --primary-dark: #16a085;
+    --primary-light: rgba(26, 188, 156, 0.15);
+    --secondary: #ecf0f1;
+    --success: #2ecc71;
+    --success-light: rgba(46, 204, 113, 0.15);
+    --bg-start: #0f172a;
+    --bg-end: #1e293b;
+    --card-bg: rgba(15, 23, 42, 0.95);
+    --text: #e2e8f0;
+    --text-light: #94a3b8;
+    --text-lighter: #64748b;
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    --glow: 0 0 20px rgba(26, 188, 156, 0.4);
+}
+
+/* 
+ * GLOBAL RESET & BASE STYLES
+ * ==========================
+ * Reset default browser styles and set up base styles for the entire document.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+ * BODY STYLES
+ * ===========
+ * Sets up the main page background, typography, and layout.
+ */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, 
+                 Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: var(--transition);
+    line-height: 1.6;
+}
+
+/* Top gradient accent bar */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--success), var(--warning));
+    z-index: 1000;
+}
+
+/* 
+ * LAYOUT CONTAINER
+ * ================
+ * Wrapper for centering content with max-width constraint.
+ */
+.container {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* 
+ * CARD COMPONENT
+ * ==============
+ * Main content container with visual styling and effects.
+ */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 35px 30px 30px;
+    width: 100%;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Top accent bar on card */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--success));
+}
+
+/* 
+ * HEADER STYLES
+ * =============
+ * Styles for the application header including title and subtitle.
+ */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+.subtitle {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* 
+ * THEME TOGGLE BUTTON
+ * ===================
+ * Styles for the dark/light mode toggle button.
+ */
+.theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--primary-light);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--primary);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.theme-toggle:hover {
+    background: var(--primary);
+    color: white;
+    transform: rotate(15deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+ * INPUT GROUP STYLES
+ * ==================
+ * Container for input elements and their labels.
+ */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+}
+
+.input-label i {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+/* 
+ * SECTION & NUMBER BUTTONS
+ * ========================
+ * Styles for the section (OD/SP/BN/TP) and number (23-26) selection buttons.
+ */
+.section-buttons,
+.number-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.section-btn,
+.number-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 14px 0;
+    background: var(--primary-light);
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--primary);
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.section-btn:hover,
+.number-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.section-btn:active,
+.number-btn:active {
+    transform: translateY(1px);
+}
+
+/* Active state background animation */
+.section-btn::before,
+.number-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease;
+}
+
+.section-btn.active,
+.number-btn.active {
+    color: white;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.section-btn.active::before,
+.number-btn.active::before {
+    transform: scaleY(1);
+}
+
+/* 
+ * CODE INPUT STYLES
+ * =================
+ * Styles for the main 7-digit code input field.
+ */
+.code-input-wrapper {
+    position: relative;
+    margin-top: 5px;
+}
+
+.code-input {
+    width: 100%;
+    padding: 16px 18px;
+    background: var(--primary-light);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-family: 'Consolas', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    outline: none;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    letter-spacing: 1px;
+}
+
+.code-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary);
+    box-shadow: var(--glow);
+}
+
+.code-input::placeholder {
+    color: var(--text-lighter);
+    opacity: 0.6;
+}
+
+/* 
+ * RESULT DISPLAY STYLES
+ * =====================
+ * Styles for the generated code display area and copy button.
+ */
+.result-container {
+    margin-top: 30px;
+}
+
+.result-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.result-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+}
+
+.result-title i {
+    margin-right: 8px;
+    color: var(--success);
+}
+
+.copy-status {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--success);
+    opacity: 0;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.copy-status i {
+    margin-right: 5px;
+}
+
+.copy-status.visible {
+    opacity: 1;
+}
+
+/* Result box with animation feedback */
+.result-box {
+    background: var(--success-light);
+    border-radius: 12px;
+    padding: 22px 25px;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.result-box.copied {
+    animation: flash 0.8s;
+    border-color: var(--success);
+}
+
+/* Flash animation for copied state */
+@keyframes flash {
+    0%, 100% {
+        background: var(--success-light);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    50% {
+        background: rgba(39, 174, 96, 0.25);
+        box-shadow: 0 0 25px rgba(39, 174, 96, 0.4);
+    }
+}
+
+.result-code {
+    font-family: 'Consolas', monospace;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--text);
+    word-break: break-all;
+    transition: var(--transition);
+    flex-grow: 1;
+}
+
+.copy-btn {
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+    flex-shrink: 0;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.copy-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.copy-btn:active {
+    transform: translateY(1px);
+}
+
+/* 
+ * INSTRUCTIONS SECTION
+ * ====================
+ * Styles for the keyboard shortcuts instructions panel.
+ */
+.instructions {
+    margin-top: 35px;
+    background: linear-gradient(145deg, rgba(52, 152, 219, 0.08), rgba(39, 174, 96, 0.05));
+    border-radius: 12px;
+    padding: 25px;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.instructions h3 {
+    margin-bottom: 18px;
+    color: var(--text-light);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instructions h3 i {
+    color: var(--primary);
+}
+
+.instructions p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.shortcuts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.shortcut {
+    padding: 14px;
+    background: var(--primary-light);
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.shortcut:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.shortcut-key {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.shortcut-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* 
+ * FOOTER STYLES
+ * =============
+ * Styles for the application footer with author and license information.
+ */
+.footer {
+    margin-top: 35px;
+    padding: 20px 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer a {
+    color: var(--primary);
+    text-decoration: none;
+    margin: 0 8px;
+    transition: var(--transition);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* 
+ * ANIMATIONS
+ * ==========
+ * Keyframe animations for UI feedback effects.
+ */
+
+/* Error shake animation for invalid input */
+.error-shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* Pulse animation for active buttons */
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 12px rgba(52, 152, 219, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+    }
+}
+
+/* 
+ * RESPONSIVE ADJUSTMENTS
+ * ======================
+ * Media queries for responsive design on smaller screens.
+ */
+@media (max-width: 600px) {
+    .card {
+        padding: 30px 20px 25px;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .section-buttons,
+    .number-buttons {
+        gap: 8px;
+    }
+
+    .section-btn,
+    .number-btn {
+        min-width: 70px;
+        padding: 12px 0;
+        font-size: 0.9rem;
+    }
+
+    .code-input {
+        font-size: 1.2rem;
+        padding: 14px 16px;
+    }
+
+    .result-code {
+        font-size: 1.5rem;
+    }
+
+    .copy-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .instructions {
+        padding: 20px;
+    }
+}
