@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Generator Kode Unik dengan UX Tingkat Dewa">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
-    <title>Simple Agreement Number Generator</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-</head>
-<body>
-    <div class="container">
-        <div class="card">
-            <header>
-                <h1> Generate Agreement Number </h1>
-                <p class="subtitle">God-Level UX - 1 Code Per Second</p>
-                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌓</button>
-            </header>
-
-            <div class="input-group">
-                <label class="input-label">Section</label>
-                <div class="section-buttons">
-                    <button class="section-btn active" data-section="OD">OD</button>
-                    <button class="section-btn" data-section="SP">SP</button>
-                    <button class="section-btn" data-section="BN">BN</button>
-                    <button class="section-btn" data-section="TP">TP</button>
-                </div>
-
-                <div class="input-group">
-                    <label class="input-label">Numbers</label>
-                    <div class="number-buttons">
-                        <button class="number-btn" data-number="23">23</button>
-                        <button class="number-btn active" data-number="24">24</button>
-                        <button class="number-btn" data-number="25">25</button>
-                        <button class="number-btn" data-number="26">26</button>
-                    </div>
-                </div>
-
-                <div class="code-input-wrapper">
-                    <label class="input-label">Code</label>
-                    <input
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta name="description" content="Generator Kode Unik dengan UX Tingkat Dewa">
+					<link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+						<title>Simple Agreement Number Generator</title>
+						<link rel="stylesheet" href="index.css">
+							<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+							</head>
+							<body>
+								<div class="container">
+									<div class="card">
+										<header>
+											<h1> Generate Agreement Number </h1>
+											<p class="subtitle">God-Level UX - 1 Code Per Second</p>
+											<button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌓</button>
+										</header>
+										<div class="input-group">
+											<label class="input-label">Section</label>
+											<div class="section-buttons">
+												<button class="section-btn active" data-section="OD">OD</button>
+												<button class="section-btn" data-section="SP">SP</button>
+												<button class="section-btn" data-section="BN">BN</button>
+												<button class="section-btn" data-section="TP">TP</button>
+											</div>
+											<div class="input-group">
+												<label class="input-label">Numbers</label>
+												<div class="number-buttons">
+													<button class="number-btn" data-number="23">23</button>
+													<button class="number-btn active" data-number="24">24</button>
+													<button class="number-btn" data-number="25">25</button>
+													<button class="number-btn" data-number="26">26</button>
+												</div>
+											</div>
+											<div class="code-input-wrapper">
+												<label class="input-label">Code</label>
+												<input
                         type="text"
                         class="code-input"
                         id="codeInput"
@@ -50,49 +46,67 @@
                         inputmode="numeric"
                         autofocus
                     >
-                </div>
-            </div>
+												</div>
+											</div>
+											<div class="result-container">
+												<div class="result-label">
+													<span class="result-title">Unique Code Results</span>
+													<span class="copy-status" id="copyStatus">Copied successfully!</span>
+												</div>
+												<div class="result-box" id="resultBox">
+													<div class="result-code" id="resultCode">OD-24-F0000000</div>
+													<button class="copy-btn" id="copyBtn">COPY</button>
+												</div>
+											</div>
+											<div class="instructions">
+												<h3>fast Guide</h3>
+												<p>Type 7 digit code → Press
+													<strong>Enter</strong>For Generate Code Automaticly
+												</p>
+												<div class="shortcuts">
+													<div class="shortcut">
+														<div class="shortcut-key">F1-F4</div>
+														<div>Change Section</div>
+													</div>
+													<div class="shortcut">
+														<div class="shortcut-key">F5-F8</div>
+														<div>Change Angka</div>
+													</div>
+													<div class="shortcut">
+														<div class="shortcut-key">Enter / F9</div>
+														<div>Copy & Reset</div>
+													</div>
+													<div class="shortcut">
+														<div class="shortcut-key">Esc</div>
+														<div>Clear Input</div>
+													</div>
+													<div class="shortcut">
+														<div class="shortcut-key">Tab</div>
+														<div>Fast Navigation</div>
+													</div>
+												</div>
+											</div>
+											<div class="footer">
+												<p>Made with ❤️ by
 
-            <div class="result-container">
-                <div class="result-label">
-                    <span class="result-title">Unique Code Results</span>
-                    <span class="copy-status" id="copyStatus">Copied successfully!</span>
-                </div>
-                <div class="result-box" id="resultBox">
-                    <div class="result-code" id="resultCode">OD-24-F0000000</div>
-                    <button class="copy-btn" id="copyBtn">COPY</button>
-                </div>
-            </div>
+													<a href="https://about-riduwan.netlify.app/" title="Author">
+														<i class="fas fa-user"></i> Muhammad Riduwan Khafidi
 
-            <div class="instructions">
-                <h3>fast Guide</h3>
-                <p>Type 7 digit code → Press<strong>Enter</strong>For Generate Code Automaticly</p>
+													</a> |
 
-                <div class="shortcuts">
-                    <div class="shortcut">
-                        <div class="shortcut-key">F1-F4</div>
-                        <div>Change Section</div>
-                    </div>
-                    <div class="shortcut">
-                        <div class="shortcut-key">F5-F8</div>
-                        <div>Change Angka</div>
-                    </div>
-                    <div class="shortcut">
-                        <div class="shortcut-key">Enter / F9</div>
-                        <div>Copy & Reset</div>
-                    </div>
-                    <div class="shortcut">
-                        <div class="shortcut-key">Esc</div>
-                        <div>Clear Input</div>
-                    </div>
-                    <div class="shortcut">
-                        <div class="shortcut-key">Tab</div>
-                        <div>Fast Navigation</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="index.js"></script>
-</body>
-</html>
+													<a href="https://github.com/nzingxv2/npgen/blob/main/LICENSE" title="MIT License">
+														<i class="fas fa-file-contract"></i> MIT License
+
+													</a> |
+
+													<a href="https://github.com/nzingxv2/npgen" target="_blank" title="GitHub">
+														<i class="fab fa-github"></i> GitHub
+
+													</a>
+												</p>
+											</div>
+										</div>
+									</div>
+									<script src="index.js"></script>
+								</body>
+							</html>
