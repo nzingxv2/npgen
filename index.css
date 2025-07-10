@@ -288,7 +288,6 @@
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-light, #555);
-            background-color: var(--background-footer, #f9f9f9);
         }
 
         .footer a {
